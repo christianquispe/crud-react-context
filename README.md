@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Prueba de React, useContex, Formik y Typescript
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Nota: Este repositorio solo es una prueba que hago con `useContext`
 
 ## Available Scripts
 
