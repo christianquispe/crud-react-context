@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 
-interface TaskInterface {
+export interface TaskInterface {
+  id: string
   name: string
   priority: string
   description: string
 }
 
-interface DataTaskInterface {
+export interface DataTaskInterface {
   handleAddTask: (task: TaskInterface) => void
   tasks: TaskInterface[]
 }
 
-const TaskContext = React.createContext<DataTaskInterface>({ tasks: [], handleAddTask: () => {} })
+const TaskContext = React.createContext<DataTaskInterface>({ tasks: [], handleAddTask: () => { } })
 TaskContext.displayName = 'TaskContext'
 
 const Tasks: React.FC = (props) => {
   const [tasks, setTask] = useState<TaskInterface[]>([])
 
   const handleAddTask = (task: TaskInterface) => {
-    setTask([...tasks, task])
+    setTask([...tasks, { ...task }])
   }
 
   return (
