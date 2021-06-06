@@ -1,4 +1,5 @@
-import CreateTaskForm from "./CreateTaskForm";
 import TaskList from "./TaskLIst";
+import CreateTaskForm from "./CreateTaskForm";
+import EditTaskForm from "./EditTaskForm";
 
-export { CreateTaskForm, TaskList }
+export { TaskList, CreateTaskForm, EditTaskForm }

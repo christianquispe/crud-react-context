@@ -6,10 +6,10 @@ import { Button, Card } from "../components"
 import { TaskContext } from "../Tasks"
 
 const TaskList = () => {
-  const { tasks } = useContext(TaskContext)
+  const { tasks, handleRemoveTask } = useContext(TaskContext)
   return (
     <div className="bg-gray-700 p-4 rounded-sm">
-      { tasks.length > 0 ? tasks.map((task, index) => <Card {...task} key={index} />) :
+      { tasks.length > 0 ? tasks.map((task, index) => <Card handleRemoveTask={handleRemoveTask} {...task} key={index} />) :
         (<div className="py-36 text-center text-gray-300">
           <p className="mb-4">No se a encontrado tareas registradas</p>
           <Button>

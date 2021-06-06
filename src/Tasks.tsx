@@ -8,22 +8,34 @@ export interface TaskInterface {
 }
 
 export interface DataTaskInterface {
-  handleAddTask: (task: TaskInterface) => void
   tasks: TaskInterface[]
+  handleAddTask: (task: TaskInterface) => void
+  handleEditTask: (task: TaskInterface) => void
+  handleRemoveTask: (id: string) => void
 }
 
-const TaskContext = React.createContext<DataTaskInterface>({ tasks: [], handleAddTask: () => { } })
+const TaskContext = React.createContext<DataTaskInterface>({ tasks: [], handleAddTask: () => { }, handleRemoveTask: () => { }, handleEditTask: () => { } })
 TaskContext.displayName = 'TaskContext'
 
 const Tasks: React.FC = (props) => {
   const [tasks, setTask] = useState<TaskInterface[]>([])
 
   const handleAddTask = (task: TaskInterface) => {
-    setTask([...tasks, { ...task }])
+    setTask([...tasks, task])
+  }
+
+  const handleEditTask = (taskEdited: TaskInterface) => {
+    const newTasks = tasks.map((task) => task.id === taskEdited.id ? { ...taskEdited } : task)
+    setTask(newTasks)
+  }
+
+  const handleRemoveTask = (id: string) => {
+    const newTasks = [...tasks].filter((task) => task.id !== id)
+    setTask(newTasks)
   }
 
   return (
-    <TaskContext.Provider value={{ handleAddTask, tasks }}>
+    <TaskContext.Provider value={{ tasks, handleAddTask, handleEditTask, handleRemoveTask }}>
       {props.children}
     </TaskContext.Provider>
   )
